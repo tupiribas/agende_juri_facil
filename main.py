@@ -1,6 +1,5 @@
 from interface import JanelaAgendamentoJuridico
 
-
 # Cria a janela principal
 janela = JanelaAgendamentoJuridico()
 
