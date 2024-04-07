@@ -1,5 +1,6 @@
-from tkinter import Tk, Label, Entry, Button
-from tkcalendar import Calendar, DateEntry 
+from tkinter import Tk, Label, Entry, Button, Toplevel, END
+from tkcalendar import Calendar
+
 
 class AgendamentoJuridico:
     def __init__(self):
@@ -11,7 +12,8 @@ class AgendamentoJuridico:
         self.sobrenome_label = Label(self.janela, text="Sobrenome:")
         self.cpf_label = Label(self.janela, text="CPF:")
         self.data_alocacao_label = Label(self.janela, text="Data de Alocação:")
-        self.numero_whatsapp_label = Label(self.janela, text="Número WhatsApp:")
+        self.numero_whatsapp_label = Label(
+            self.janela, text="Número WhatsApp:")
 
         # Entries
         self.nome_entry = Entry(self.janela)
@@ -21,7 +23,8 @@ class AgendamentoJuridico:
         self.numero_whatsapp_entry = Entry(self.janela)
 
         # Botões
-        self.botao_calendario = Button(self.janela, text="Calendário", command=self.abrir_calendario) 
+        self.botao_calendario = Button(
+            self.janela, text="Calendário", command=self.abrir_calendario)
         self.submit_button = Button(self.janela, text="Enviar")
 
         # Organizando os widgets
@@ -46,8 +49,23 @@ class AgendamentoJuridico:
         self.janela.mainloop()
 
     def abrir_calendario(self):
-        # Coloque a lógica para abrir o calendário (tkcalendar) aqui
-        pass 
+        # Função para abrir o calendário
+        calendario = Toplevel()
+        calendario.title("Selecionar Data")
+
+        data_selecionada = Calendar(calendario)
+        data_selecionada.pack()
+
+        # Função para fechar o calendário e atualizar o campo de entrada da data
+        def fechar_calendario():
+            self.data_alocacao_entry .delete(0, END)
+            self.data_alocacao_entry.insert(0, data_selecionada.get_date())
+            calendario.destroy()
+
+        botao_fechar = Button(calendario, text="Salvar data",
+                              command=fechar_calendario)
+        botao_fechar.pack()
+
 
 if __name__ == "__main__":
-    agendamento = AgendamentoJuridico() 
+    agendamento = AgendamentoJuridico()
