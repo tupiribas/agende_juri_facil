@@ -1,3 +1,3 @@
-from interface import janelaAgendamentoJuridico
+from interface.agendamentojuridico import AgendamentoJuridico
 
-JanelaAgendamentoJuridico = janelaAgendamentoJuridico.AgendamentoJuridico()
+AgendamentoJuridico = AgendamentoJuridico()

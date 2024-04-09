@@ -4,6 +4,7 @@ from tkcalendar import Calendar
 
 
 class AgendamentoJuridico:
+    # Melhorar a interface -> aumentar o espaçamento dos Entrys
     def __init__(self):
         self.janela = Tk()
         self.janela.title("Agendamento Jurídico")
@@ -72,7 +73,7 @@ class AgendamentoJuridico:
         def fechar_calendario():
             self.data_alocacao_entry.delete(0, END)
             self.data_alocacao_entry.insert(0, data_selecionada.get_date())
-            
+
             # Desabilitar o botão Calendário na tela principal, quando salvar ou fechar
             self.botao_calendario.config(state="active")
             calendario.destroy()
@@ -80,7 +81,3 @@ class AgendamentoJuridico:
         botao_fechar = Button(calendario, text="Salvar data",
                               command=fechar_calendario)
         botao_fechar.pack()
-
-
-if __name__ == "__main__":
-    agendamento = AgendamentoJuridico()

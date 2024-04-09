@@ -1,7 +1,4 @@
-from interface import JanelaAgendamentoJuridico
+from interface import AgendamentoJuridico
 
 # Cria a janela principal
-janela = JanelaAgendamentoJuridico()
-
-# Inicia o loop da janela
-janela.mainloop()
+janela = AgendamentoJuridico
