@@ -1,16 +1,17 @@
 from tkinter import Tk, Frame, Label, Entry, Button, Toplevel, END
 from tkcalendar import Calendar
 
+from view.view_aba import AbaPadrao
 from model.pessoa import PessoaFisica
 
 
-class DadosJuridicos(Frame):
+class DadosJuridicos(AbaPadrao):
     # ALERTA! Melhorar a interface -> aumentar o espaçamento dos Entrys
     def __init__(self, master: Tk):
         # Inicialização do container
         super().__init__(master=master)
 
-        self.aba_dados = self.criar_aba_padrao("Dados Pessoais", master)
+        self.aba_dados = self.criar_aba_padrao(titulo_da_aba="Dados Pessoais")
 
         # Labels
         self.nome_label = Label(self.aba_dados, text="Nome:")
@@ -57,22 +58,6 @@ class DadosJuridicos(Frame):
                               sobrenome=self.sobrenome_entry,
                               cpf=self.cpf_entry,
                               numero_telefone=self.numero_whatsapp_entry)
-
-    def criar_aba_padrao(self, titulo_da_aba: str, master: Tk):
-        """Cria e retorna a aba personalizada."""
-        from tkinter.ttk import Notebook
-
-        # Cria o widget Notebook com base na janela master
-        notebook = Notebook(master)
-        notebook.pack()
-        # Cria as abas
-        aba = Frame(notebook)
-        # Adiciona as abas ao Notebook
-        notebook.add(aba, text=titulo_da_aba)
-
-        # Cria widgets na aba
-
-        return aba
 
     def abrir_calendario(self):
         ''' Abre um calendário completo permitindo o
