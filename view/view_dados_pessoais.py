@@ -1,21 +1,16 @@
-from tkinter import Tk, Label, Entry, Button, Toplevel, END
-from tkinter.ttk import Notebook, Frame
+from tkinter import Tk, Frame, Label, Entry, Button, Toplevel, END
 from tkcalendar import Calendar
 
+from model.pessoa import PessoaFisica
 
-class AgendamentoJuridico:
-    # Melhorar a interface -> aumentar o espaçamento dos Entrys
-    def __init__(self):
-        self.janela = Tk()
-        self.janela.title("Agendamento Jurídico")
 
-        # Cria o widget Notebook
-        self.notebook = Notebook(self.janela)
-        self.notebook.pack()
-        # Cria as abas
-        self.aba_dados = Frame(self.notebook)
-        # Adiciona as abas ao Notebook
-        self.notebook.add(self.aba_dados, text="Dados Pessoais")
+class DadosJuridicos(Frame):
+    # ALERTA! Melhorar a interface -> aumentar o espaçamento dos Entrys
+    def __init__(self, master: Tk):
+        # Inicialização do container
+        super().__init__(master=master)
+
+        self.aba_dados = self.criar_aba_padrao("Dados Pessoais", master)
 
         # Labels
         self.nome_label = Label(self.aba_dados, text="Nome:")
@@ -57,9 +52,32 @@ class AgendamentoJuridico:
 
         self.submit_button.grid(row=5, column=1)
 
-        self.janela.mainloop()
+    def obter_dados_pessoa(self, nome, sobrenome, cpf, numero_telefone):
+        pessoa = PessoaFisica(nome=self.nome_entry,
+                              sobrenome=self.sobrenome_entry,
+                              cpf=self.cpf_entry,
+                              numero_telefone=self.numero_whatsapp_entry)
+
+    def criar_aba_padrao(self, titulo_da_aba: str, master: Tk):
+        """Cria e retorna a aba personalizada."""
+        from tkinter.ttk import Notebook
+
+        # Cria o widget Notebook com base na janela master
+        notebook = Notebook(master)
+        notebook.pack()
+        # Cria as abas
+        aba = Frame(notebook)
+        # Adiciona as abas ao Notebook
+        notebook.add(aba, text=titulo_da_aba)
+
+        # Cria widgets na aba
+
+        return aba
 
     def abrir_calendario(self):
+        ''' Abre um calendário completo permitindo o
+         usuário selecionar a data e salva na tela principal'''
+
         # Desabilitar o botão Calendário na tela principal
         self.botao_calendario.config(state="disabled")
 
@@ -69,15 +87,19 @@ class AgendamentoJuridico:
         data_selecionada = Calendar(calendario)
         data_selecionada.pack()
 
-        # Função para fechar o calendário e atualizar o campo de entrada da data
         def fechar_calendario():
+            # Função para fechar o calendário e atualizar o campo de entrada da data
             self.data_alocacao_entry.delete(0, END)
             self.data_alocacao_entry.insert(0, data_selecionada.get_date())
 
-            # Desabilitar o botão Calendário na tela principal, quando salvar ou fechar
+            # Desabilitar o botão Calendário na tela principal
             self.botao_calendario.config(state="active")
             calendario.destroy()
 
+        # Salvar informações
         botao_fechar = Button(calendario, text="Salvar data",
                               command=fechar_calendario)
+
+        # Caso o usuário feche a janela do calendário, ele ativa o botão Calendário
+        calendario.protocol("WM_DELETE_WINDOW", fechar_calendario)
         botao_fechar.pack()

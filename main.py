@@ -1,4 +1,12 @@
-from interface import AgendamentoJuridico
+from tkinter import Tk
+
+from view import DadosJuridicos
+
+
+janela = Tk()
+janela.title("Agendamento Jurídico")
 
 # Cria a janela principal
-janela = AgendamentoJuridico
+DadosJuridicos(master=janela)
+
+janela.mainloop()
