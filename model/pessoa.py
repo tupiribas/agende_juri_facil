@@ -1,9 +1,9 @@
-class PessoaFisica:
-    def __init__(self, nome, sobrenome, cpf, numero_telefone) -> None:
+class Pessoa:
+    def __init__(self, nome, sobrenome, data_nascimento, numero_telefone) -> None:
         self.nome = nome
         self.sobrenome = sobrenome
-        self.cpf = cpf
         self.numero_telefone = numero_telefone
+        self.data_nascimento = data_nascimento
 
     def __str__(self) -> str:
-        return f'{self.nome}, {self.sobrenome}, {self.cpf}, {self.numero_telefone}.'
+        return f'{self.nome}, {self.sobrenome}, {self.data_nascimento}, {self.numero_telefone}.'

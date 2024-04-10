@@ -1,12 +1,12 @@
 from tkinter import Tk
 
-from view import DadosJuridicos
+from view.view_dados_pessoais import ViewDadosJuridicos
 
 
 janela = Tk()
 janela.title("Agendamento Jurídico")
 
 # Cria a janela principal
-DadosJuridicos(master=janela)
+ViewDadosJuridicos(master=janela)
 
 janela.mainloop()
