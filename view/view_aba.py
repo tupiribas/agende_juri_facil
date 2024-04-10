@@ -1,7 +1,7 @@
 from tkinter import Frame
 
 
-class AbaPadrao(Frame):
+class ViewAbaPadrao(Frame):
     def __init__(self, master: Frame) -> None:
         """Cria e retorna uma aba personalizada."""
         super().__init__(master=master)

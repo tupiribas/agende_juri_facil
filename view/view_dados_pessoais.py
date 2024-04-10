@@ -1,11 +1,11 @@
 from tkinter import Tk, Label, Entry, Button, Toplevel, END
 from tkcalendar import Calendar
 
-from view.view_aba import AbaPadrao
+from view.view_aba import ViewAbaPadrao
 from controller.controle_agenda_juridico import ControleAgendaJuridico
 
 
-class ViewDadosJuridicos(AbaPadrao):
+class ViewDadosJuridicos(ViewAbaPadrao):
     # ALERTA! Melhorar a interface -> aumentar o espaçamento dos Entrys
     def __init__(self, master: Tk):
         # Inicialização do container
