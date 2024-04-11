@@ -1,3 +1,3 @@
-import service.servicogooglesheet as servicogooglesheet
-valor = servicogooglesheet.ConfigGoogleSheets()
-valor.mostrar_valores()
+from service import servicogooglesheet
+
+servicogooglesheet.ConfigGoogleSheets().inserir_valor_na_linha()

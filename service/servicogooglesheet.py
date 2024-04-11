@@ -16,12 +16,9 @@ class ConfigGoogleSheets:
         self.SAMPLE_SPREADSHEET_ID = "1VzpEt7gddPivhRWSUbmo1jX4SvxwMdU9hywLcnyrvNo"
         self.SAMPLE_RANGE_NAME = "Página1"
 
-        self.creds = None
-        # The file token.json stores the user's access and refresh tokens, and is
-        # created automatically when the authorization flow completes for the first
-        # time.
+    def validacao_do_token(self):
+        creds = None
 
-    def mostrar_valores(self):
         if os.path.exists("token.json"):
             creds = Credentials.from_authorized_user_file(
                 "token.json", self.SCOPES)
@@ -37,16 +34,31 @@ class ConfigGoogleSheets:
             # Save the credentials for the next run
             with open("token.json", "w") as token:
                 token.write(creds.to_json())
+        return creds
+
+    def inserir_valor_na_linha(self, nome: str, sobrenome: str, cpf: str, data_nascimento: str, numero_telefone: str):
+        creds = self.validacao_do_token()
 
         try:
             service = build("sheets", "v4", credentials=creds)
 
             # Call the Sheets API
             sheet = service.spreadsheets()
-            result = (
-                sheet.values().get(spreadsheetId=self.SAMPLE_SPREADSHEET_ID,
-                                   range=self.SAMPLE_RANGE_NAME).execute()
-            )
+
+            ultima_linha = self.mostrar_ultima_linha()
+
+            dados_novas_linhas = [
+                [ultima_linha, nome, sobrenome,
+                    cpf, data_nascimento, numero_telefone],
+            ]
+
+            # Adiciona as novas linhas
+            result = sheet.values().append(
+                spreadsheetId=self.SAMPLE_SPREADSHEET_ID,
+                range="A:F",  # Insere em todas as colunas
+                valueInputOption="USER_ENTERED",
+                body={"values": dados_novas_linhas},
+            ).execute()
 
             rows = result.get("values", [])
             print(f"{rows} rows retrieved")
@@ -54,6 +66,18 @@ class ConfigGoogleSheets:
         except HttpError as err:
             print(err)
 
+    def mostrar_ultima_linha(self):
+        creds = self.validacao_do_token()
+        try:
+            # Start no serviço
+            service = build("sheets", "v4", credentials=creds)
+            sheet = service.spreadsheets()
 
-valor = ConfigGoogleSheets()
-valor.mostrar_valores()
+            # Obter os dados da tabela
+            result = sheet.values().get(spreadsheetId=self.SAMPLE_SPREADSHEET_ID,
+                                        range="Página1!A:X").execute()
+
+            # Retornando o tamanho da tabela somando com 1
+            return len(result.get('values', []))
+        except HttpError as err:
+            print(err)
