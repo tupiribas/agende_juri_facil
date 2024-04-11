@@ -1,3 +1,3 @@
-from service import servicogooglesheet
+from . import servicogooglesheet
 
-servicogooglesheet.ConfigGoogleSheets().inserir_valor_na_linha()
+servicogooglesheet.ServicoGoogleSheets().inserir_valor_na_linha()

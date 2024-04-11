@@ -1,4 +1,5 @@
 from model.pessoa_fisica import PessoaFisica
+from quickstart import ServicoGoogleSheets
 
 
 class ControleAgendaJuridico:
@@ -36,3 +37,10 @@ class ControleAgendaJuridico:
             data_nascimento=data_nascimento,
             numero_telefone=numero_telefone,
         )
+
+        sheets = ServicoGoogleSheets()
+        sheets.inserir_valor_na_linha(nome=pessoafisica.nome,
+                                      sobrenome=pessoafisica.sobrenome,
+                                      cpf=pessoafisica.cpf,
+                                      data_nascimento=pessoafisica.data_nascimento,
+                                      numero_telefone=pessoafisica.numero_telefone)

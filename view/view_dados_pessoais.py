@@ -1,5 +1,5 @@
-from tkinter import Tk, Label, Entry, Button, Toplevel, END
 from tkcalendar import Calendar
+from tkinter import Tk, Label, Entry, Button, Toplevel, END
 
 from view.view_aba import ViewAbaPadrao
 from controller.controle_agenda_juridico import ControleAgendaJuridico

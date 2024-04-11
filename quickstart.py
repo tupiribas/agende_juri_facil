@@ -7,7 +7,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 
-class ConfigGoogleSheets:
+class ServicoGoogleSheets:
     def __init__(self) -> None:
         # If modifying these scopes, delete the file token.json.
         self.SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
