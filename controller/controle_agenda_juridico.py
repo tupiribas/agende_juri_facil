@@ -39,6 +39,7 @@ class ControleAgendaJuridico:
         )
 
         sheets = ServicoGoogleSheets()
+        sheets.validacao_do_token()
         sheets.inserir_valor_na_linha(nome=pessoafisica.nome,
                                       sobrenome=pessoafisica.sobrenome,
                                       cpf=pessoafisica.cpf,

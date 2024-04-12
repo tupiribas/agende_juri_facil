@@ -15,6 +15,7 @@ class ServicoGoogleSheets:
         # The ID and range of a sample spreadsheet.
         self.SAMPLE_SPREADSHEET_ID = "1VzpEt7gddPivhRWSUbmo1jX4SvxwMdU9hywLcnyrvNo"
         self.SAMPLE_RANGE_NAME = "Página1"
+        self.validacao_do_token()
 
     def validacao_do_token(self):
         creds = None
@@ -67,8 +68,8 @@ class ServicoGoogleSheets:
             print(err)
 
     def mostrar_ultima_linha(self):
-        creds = self.validacao_do_token()
         try:
+            creds = self.validacao_do_token()
             # Start no serviço
             service = build("sheets", "v4", credentials=creds)
             sheet = service.spreadsheets()
