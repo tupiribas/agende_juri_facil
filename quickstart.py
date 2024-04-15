@@ -37,7 +37,7 @@ class ServicoGoogleSheets:
                 token.write(creds.to_json())
         return creds
 
-    def inserir_valor_na_linha(self, nome: str, sobrenome: str, cpf: str, data_nascimento: str, numero_telefone: str):
+    def inserir_valor_na_linha(self, nome: str, sobrenome: str, cpf: str, data_alocacao: str, data_nascimento: str, numero_telefone: str):
         creds = self.validacao_do_token()
 
         try:
@@ -50,7 +50,7 @@ class ServicoGoogleSheets:
 
             dados_novas_linhas = [
                 [ultima_linha, nome, sobrenome,
-                    cpf, data_nascimento, numero_telefone],
+                    cpf, data_nascimento, numero_telefone, data_alocacao],
             ]
 
             # Adiciona as novas linhas

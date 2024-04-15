@@ -18,3 +18,7 @@ Sistema de agendamente
 		Ferramentas:
 			- Yowsup (https://github.com/tgalal/yowsup)
 			- Twillio (https://console.twilio.com/us1/develop/sms/try-it-out/whatsapp-learn?frameUrl=%2Fconsole%2Fsms%2Fwhatsapp%2Flearn%3Fx-target-region%3Dus1)
+
+Melhoria:
+	Implementar o controle de reservas com agendamento e validação do agendamento
+	
