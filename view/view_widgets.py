@@ -1,6 +1,5 @@
-from tkcalendar import Calendar
-from tkinter import END, Button, Toplevel
-from re import match, sub
+from tkinter import END, Button
+from re import sub
 from tkinter import Entry
 from tkinter import Frame, Label
 
@@ -122,12 +121,12 @@ class ViewEntryPadrao:
 class ViewBotaoPadrao:
     def __init__(self, aba_padrao: Frame, salvar_informacoes_callback, abrir_calendario_callback) -> None:
         self.aba_padrao = aba_padrao
+
         # Botões
         self.botao_calendario = Button(
             aba_padrao, text="Calendário", command=abrir_calendario_callback)
+        self.botao_calendario.grid(row=4, column=2)
+
         self.submit_button = Button(
             aba_padrao, text="Enviar", command=salvar_informacoes_callback)
-
-        # Organizando os widgets
-        self.botao_calendario.grid(row=4, column=2)
         self.submit_button.grid(row=6, column=1)
