@@ -20,5 +20,8 @@ Sistema de agendamente
 			- Twillio (https://console.twilio.com/us1/develop/sms/try-it-out/whatsapp-learn?frameUrl=%2Fconsole%2Fsms%2Fwhatsapp%2Flearn%3Fx-target-region%3Dus1)
 
 Melhoria:
-	Implementar o controle de reservas com agendamento e validação do agendamento
+	1. Implementar o controle de reservas com agendamento e validação do agendamento
+		- Verificar se essa reserva ja foi feita, caso não esteja, informar na tela que a data não é permitida.
+	2. Melhorar a interface
+
 	
